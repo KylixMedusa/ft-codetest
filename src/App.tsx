@@ -12,16 +12,23 @@ const App: React.FC = () => {
     correct_answer: string;
     incorrect_answers: string[];
   }[] = json;
+  //Questions is the array made to hold values obtained from the JSON provided
 
   const [qNo, setqNo] = useState(1);
+  //To hold the current Question number
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  //To hold the no of questions answered
   const [judgement, setJudgement] = useState("");
+  //To hold the judgement of the question answered
   const [random, setRandom] = useState(Math.floor(Math.random() * 4) + 1);
+  //To randomly place the correct answer amongst the incorrect options
   const [points, setPoints] = useState(0);
+  //To hold the number of questions correctly answered
 
   function resetRandom() {
     setRandom(Math.floor(Math.random() * 4) + 1);
   }
+  //To reset the random valur assigned to random to place correct answer
 
   const generateStars = (val: string) => {
     let stars: any = [];
@@ -66,7 +73,9 @@ const App: React.FC = () => {
     }
     return stars;
   };
+  //This function is used to generate stars based on the difficulty of the current question
 
+  //This function is used to submit the answer and display the judgement
   function submit(val: boolean) {
     setQuestionsAnswered(questionsAnswered + 1);
     if (val) {
@@ -77,6 +86,7 @@ const App: React.FC = () => {
     }
   }
 
+  //This function is used to move to next question
   function nextQuestion() {
     if (qNo < questions.length) {
       resetRandom();
@@ -85,6 +95,7 @@ const App: React.FC = () => {
     }
   }
 
+  //This function is used to restart the game
   function restart() {
     setPoints(0);
     setqNo(1);
