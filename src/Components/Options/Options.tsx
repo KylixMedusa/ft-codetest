@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './Options.scss';
 
 type Props = {
   type:string;
@@ -11,8 +10,9 @@ type Props = {
 
 const Options:React.FC<Props> = (props) => {
 
-  const [revealed,setRevealed] = useState(false);
+  const [revealed,setRevealed] = useState(false); //This is used to check whether the answer is revealed or not
 
+  //This function is used to reveal answers and also submit to display judgement
   function reveal(val:boolean, event:any){
     if(!revealed){
       setRevealed(true);
@@ -38,10 +38,12 @@ const Options:React.FC<Props> = (props) => {
     }
   }
 
+  //This useEffect hook handles reset of reveal state when question is updated
   useEffect(()=>{
     setRevealed(false);
   },[props.correctAns]);
 
+  //This function is used to generate options depending on type of the question
   function generateOptions(){
     let buttons = [];
     if(props.type === "boolean"){
